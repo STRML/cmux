@@ -10077,6 +10077,10 @@ private struct TabItemView: View, Equatable {
             selectedTabIds: $selectedTabIds,
             lastSidebarSelectionIndex: $lastSidebarSelectionIndex
         ))
+        .onTapGesture(count: 2) {
+            updateSelection()
+            tabManager.toggleFocusedSplitZoom()
+        }
         .onTapGesture {
             updateSelection()
         }

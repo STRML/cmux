@@ -7529,13 +7529,9 @@ C0DE71B10000000000000002 /* AppDelegate+AgentChatNotifications.swift */ = {isa =
 				minimumVersion = 2.9.0;
 			};
 		};
-		A5001252 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.3.0;
-			};
+		A5001252 /* XCLocalSwiftPackageReference "SentryStub" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = LocalStubs/SentryStub;
 		};
 		A5001272 /* XCRemoteSwiftPackageReference "posthog-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;

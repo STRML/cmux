@@ -71,6 +71,11 @@ for arch in $requested_archs; do
       --no-default-features
   source_binary="${target_dir}/${target}/release/${BINARY_NAME}"
   [[ -x "$source_binary" ]] || { echo "error: missing ${source_binary}" >&2; exit 1; }
+  # The release profile leaves symbols in (see Cargo.toml); `strip` rewrites the
+  # LC_SYMTAB string pool 8-byte aligned, which modern dyld requires to dlopen,
+  # and removes _main/_rust_eh_personality that `strip -x` would keep, so the
+  # artifact verifier's zero-local-symbols gate passes.
+  strip "$source_binary"
   binaries+=("$source_binary")
 done
 

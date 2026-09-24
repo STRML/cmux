@@ -53,7 +53,12 @@ codegen-units = 1
 lto = "fat"
 opt-level = "z"
 panic = "abort"
-strip = "symbols"
+# macOS 26/27 dyld refuses to dlopen proc-macro dylibs whose LC_SYMTAB string
+# pool is not 8-byte aligned; rust 1.88's in-place `strip = "symbols"` rewriter
+# leaves stroff unaligned when chained fixups are on (deployment target >= 12.0,
+# which Xcode's build phase pins at 14.0). Strip with the external tool below
+# instead, which rewrites the pool aligned.
+strip = "none"
 
 [lints.rust]
 unsafe_code = "deny"
